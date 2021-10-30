@@ -1,11 +1,15 @@
 \documentclass{article}
 \input{style.sty}
 
+\usepackage{pgfplots}
+\usepackage{lipsum}  
+
 \usepackage[
   paperwidth=90cm,
   paperheight=120cm,
   top=25cm,
-  left=10cm
+  left=9cm,
+  right=9cm,
 ]{geometry}
 
 
@@ -16,8 +20,45 @@
 \setmainfont{Arial}
 
 \usepackage[BoldFont, SlantFont]{xeCJK}
-\setCJKmainfont{BiauKai}
+\setCJKmainfont{Microsoft JhengHei}
+
+\usepackage[absolute]{textpos}
+\TPGrid[80mm,390mm]{15}{12}
+
+\parindent=0pt
+\parskip=\baselineskip
 
 \begin{document}
-\Huge hello world!!
+% disable page numbering
+\thispagestyle{empty}
+\membersize \textbf{第17組：朱劭璿、陳居廷}\hspace{20.5cm}\textbf{指導老師：陳嘉平 教授}
+\bigskip
+
+\titlesize \textbf{TSM-Net: 以對抗式時序壓縮自編碼器為基礎的音訊變速演算法 \\
+TSM-Net: Temporal Compressing Autoencoder with Adversarial Losses for Time-Scale Modification on Audio Signals}
+
+\begin{textblock}{7.0}(0,0)
+\Head{Introduction} \\
+\Large \lipsum[1-1] \\
+
+\medskip
+\Head{Related Works} \\
+\Large \lipsum[2-2] \\
+
+\medskip
+\Head{Methodology} \\
+\Large \lipsum[3-3]
+\end{textblock}
+
+\begin{textblock}{7.0}(8,0)
+\Head{Experiment} \\
+\Large \lipsum[4-4]
+\large \input{assets/tsm-illus.tex}
+
+\medskip
+\Head{Conclusion} \\
+\Large \lipsum[5-5]
+\end{textblock}
+
+
 \end{document}

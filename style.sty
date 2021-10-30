@@ -12,3 +12,25 @@
 \newcommand{\veryHuge}{\fontsize{74.3}{93}\selectfont}
 \newcommand{\VeryHuge}{\fontsize{89.16}{112}\selectfont}
 \newcommand{\VERYHuge}{\fontsize{107}{134}\selectfont}
+
+
+\newcommand{\membersize}{\noindent\fontsize{61.92}{77}\selectfont}
+\newcommand{\titlesize}{\noindent\fontsize{72}{80}\selectfont}
+
+% These colours are tried and tested for titles and headers. Don't
+% over use color!
+\usepackage{color}
+
+\definecolor{college-engineering}{rgb}{0.09,0.25,0.41}
+\definecolor{dept-cse}{rgb}{0.26,0.58,0.82}
+
+\renewcommand{\labelitemi}{\textcolor{college-engineering}\textbullet}
+\renewcommand{\labelitemii}{\textcolor{college-engineering}{--}}
+
+\setlength{\labelsep}{0.5em}
+
+
+% see documentation for a0poster class for the size options here
+\let\Textsize\normalsize
+\def\Head#1{\hrule\smallskip\noindent{\huge\color{college-engineering} \textbf{#1}}\bigskip}
+\def\Subhead#1{\noindent{\large\color{college-engineering} #1}\bigskip}
