@@ -1,7 +1,8 @@
 \documentclass{article}
 \input{style.sty}
 
-\usepackage{amsmath,amssymb,enumitem}
+\usepackage{amsmath,amssymb,enumitem,graphicx}
+\usepackage[hidelinks]{hyperref}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \pgfplotsset{
@@ -27,7 +28,7 @@
 \usepackage[
   paperwidth=90cm,
   paperheight=120cm,
-  top=25cm,
+  top=24cm,
   left=9cm,
   right=9cm,
 ]{geometry}
@@ -44,7 +45,7 @@
 \setCJKmainfont{Microsoft JhengHei}
 
 \usepackage[absolute]{textpos}
-\TPGrid[80mm,385mm]{15}{12}
+\TPGrid[80mm,378mm]{15}{12}
 
 \parindent=0pt
 \parskip=\baselineskip
@@ -99,9 +100,18 @@ And the autoencoder tries to fool the discriminator by generating realistic audi
 \medskip
 
 \Head{Experiment} \\
+\Large
+We train our model with Tesla P100 on four Datasets. For the details of the training techniques and sample outputs. Please checkout our paper and visit our demonstration page.
+\begin{itemize}[topsep=-1em]
+  \item{\url{https://ernestchu.github.io/tsm-net-paper/tsm-net.pdf}}
+  \item{\url{https://ernestchu.github.io/tsm-net-demo/}}
+\end{itemize}
+\vspace{1.5em}
 
 \medskip
-\Head{Conclusion} \\
+\Head{Conclusion and future work} \\
+\Large
+The proposed method demonstrated a simple and efficient approach to manipulate the audio. It mitigates the issues found in the traditional TSM. It can also be incorporated with the advancements in other domains such as image interpolation to leverage the audio quality.
 \end{textblock}
 
 
