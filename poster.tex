@@ -67,7 +67,9 @@ We proposed a novel TSM approach. While traditional methods use framing techniqu
 \medskip
 \Head{Related Works} \\
 \Large
- Modeling audio is not a trivial task for neural networks. Models that directly generate raw audio waveform are known as vocoder which can be conditioned on some high-level abstract features such as linguistic features or spectrograms. In applications like text-to-speech (TTS) pipeline, the network often predicts the speech spectrogram of given texts, then uses a vocoder to get the raw audio.
+ Modeling audio is not a trivial task for neural networks. Models that directly generate raw audio waveform are known as vocoder which can be conditioned on some high-level abstract features such as linguistic features or spectrograms. In applications like text-to-speech (TTS) pipeline, the network often predicts the speech spectrogram of given texts, then uses a vocoder to get the raw audio. Modern neural-enabled vocoders bring the synthetic quality to a new level.
+
+Decreasing the sampling rate to simplify the dimensionality is another option. However, the Nyquist-Shannon sampling theorem suggests that the low sampling rate would lead to serious aliasing. For example, suppose the signals are sampled non-uniformly for a better illustration, two signals with different frequency components are the aliases for each other in the discrete domain, represented as black dots.
 
 \large \input{assets/alias-illus.tex}
 \end{textblock}
