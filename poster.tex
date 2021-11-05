@@ -2,6 +2,12 @@
 \input{style.sty}
 
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\pgfplotsset{
+  xticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
+  yticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
+}
+\usetikzlibrary{intersections}
 \usepackage{lipsum}  
 
 \usepackage[
@@ -39,11 +45,17 @@ TSM-Net: Temporal Compressing Autoencoder with Adversarial Losses for Time-Scale
 
 \begin{textblock}{7.0}(0,0)
 \Head{Introduction} \\
-\Large \lipsum[1-1] \\
+\Large
+With the advance of technologies and digitalization, we can store and reproduce multimedia content nowadays. An ubiquitous application regarding audio signals called time-scaled modification (TSM) is used in our daily life. It's also known as playback speed control in the video streaming platforms such as YouTube. With the power of artificial intelligence (AI) and modern computation hardware, however, we haven't discovered any method using AI to refine TSM algorithm and leverage the quality of the synthetic audio to the next level.
+
+We proposed a novel TSM approach. While traditional methods use framing technique and spectral approaches use short-time Fourier transform to get high-level units. TSM-Net, our neural-network model encodes the raw audio into a high-level latent representation called Neuralgram. Since the resulting Neuralgram is a two-dimensional image with real values, we apply some existing image resizing techniques on the Neuralgram and decode it using our neural decoder to obtain the time-scaled audio. \\
 
 \medskip
 \Head{Related Works} \\
-\Large \lipsum[2-2] \\
+\Large
+ Modeling audio is not a trivial task for neural networks. Models that directly generate raw audio waveform are known as vocoder.
+
+\input{assets/alias-illus.tex}
 
 \medskip
 \Head{Methodology} \\

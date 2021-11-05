@@ -1,0 +1,40 @@
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}
+\begin{axis}[
+  domain=0:10,
+  axis lines = left,
+  legend pos=outer north east,
+  xlabel=\(x\),
+  ylabel={\(f(x)\)},
+  width=16cm,
+  height=4cm,
+  scale only axis,
+  legend style={fill=none}
+]
+\addplot [
+  name path=p1,
+  samples=100, 
+  color=red,
+]
+{sin(deg(x))};
+\addlegendentry{$\sin(x)$}
+\addplot [
+  name path=p2,
+  samples=100, 
+  color=blue,
+]
+{sin(deg(2*x))};
+\addlegendentry{$\sin(2x)$}
+
+\fill 
+  [name intersections={of=p1 and p2, name=i, total=\t}] 
+  [black, opacity=1] 
+  \foreach \s in {1,...,\t}{(i-\s) circle (4pt)};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{center}
+\end{figure}
