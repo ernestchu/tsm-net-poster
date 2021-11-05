@@ -1,6 +1,7 @@
 \documentclass{article}
 \input{style.sty}
 
+\usepackage{amsmath,amssymb,enumitem}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \pgfplotsset{
@@ -22,7 +23,6 @@
   },  
 }
 \usetikzlibrary{intersections}
-\usepackage{lipsum}  
 
 \usepackage[
   paperwidth=90cm,
@@ -36,6 +36,7 @@
 \usepackage{wallpaper}
 \CenterWallPaper{1}{assets/background}
 
+\usepackage{mathspec}
 \usepackage{fontspec}
 \setmainfont{Arial}
 
@@ -43,7 +44,7 @@
 \setCJKmainfont{Microsoft JhengHei}
 
 \usepackage[absolute]{textpos}
-\TPGrid[80mm,390mm]{15}{12}
+\TPGrid[80mm,385mm]{15}{12}
 
 \parindent=0pt
 \parskip=\baselineskip
@@ -52,7 +53,7 @@
 % disable page numbering
 \thispagestyle{empty}
 \membersize \textbf{第17組：朱劭璿、陳居廷}\hspace{20.5cm}\textbf{指導老師：陳嘉平 教授}
-\bigskip
+\medskip
 
 \titlesize \textbf{TSM-Net: 以對抗式時序壓縮自編碼器為基礎的音訊變速演算法 \\
 TSM-Net: Temporal Compressing Autoencoder with Adversarial Losses for Time-Scale Modification on Audio Signals}
@@ -60,33 +61,47 @@ TSM-Net: Temporal Compressing Autoencoder with Adversarial Losses for Time-Scale
 \begin{textblock}{7.0}(0,0)
 \Head{Introduction} \\
 \Large
-With the advance of technologies and digitalization, we can store and reproduce multimedia content nowadays. An ubiquitous application regarding audio signals called time-scaled modification (TSM) is used in our daily life. It's also known as playback speed control in the video streaming platforms such as YouTube. With the power of artificial intelligence (AI) and modern computation hardware, however, we haven't discovered any method using AI to refine TSM algorithm and leverage the quality of the synthetic audio to the next level.
+With the advance of technologies, we can manipulate multimedia contents nowadays. An ubiquitous application regarding audio signals called time-scaled modification (TSM) is used in our daily life. It's also known as playback speed control. Interestingly, we haven't discovered any method using (artificial intelligence) AI to refine TSM algorithm and leverage the quality of the synthetic audio.
 
-We proposed a novel TSM approach. While traditional methods use framing technique and spectral approaches use short-time Fourier transform to get high-level units. TSM-Net, our neural-network model encodes the raw audio into a high-level latent representation called Neuralgram. Since the resulting Neuralgram is a two-dimensional image with real values, we apply some existing image resizing techniques on the Neuralgram and decode it using our neural decoder to obtain the time-scaled audio. \\
+We proposed a novel TSM approach. While traditional/spectral methods use framing technique/STFT to get high-level units. TSM-Net, our neural-network model encodes the raw audio into a high-level latent representation called Neuralgram. Since the resulting Neuralgram is an image-like data, we apply some existing image resizing techniques and decode it using our neural decoder to obtain the time-scaled audio. \\
 
 \medskip
 \Head{Related Works} \\
 \Large
- Modeling audio is not a trivial task for neural networks. Models that directly generate raw audio waveform are known as vocoder which can be conditioned on some high-level abstract features such as linguistic features or spectrograms. In applications like text-to-speech (TTS) pipeline, the network often predicts the speech spectrogram of given texts, then uses a vocoder to get the raw audio. Modern neural-enabled vocoders bring the synthetic quality to a new level.
+Modeling audio is not a trivial task. Models that directly generate raw audio waveform are known as vocoder which can be conditioned on some high-level abstract features. In applications like TTS pipeline, the network often predicts the speech spectrogram of given texts, then uses a vocoder to get the audio. Modern neural-enabled vocoders bring the synthetic quality to a next level.
 
-Decreasing the sampling rate to simplify the dimensionality is another option. However, the Nyquist-Shannon sampling theorem suggests that the low sampling rate would lead to serious aliasing. For example, suppose the signals are sampled non-uniformly for a better illustration, two signals with different frequency components are the aliases for each other in the discrete domain, represented as black dots.
+Decreasing the sampling rate to simplify the dimensionality is another option. However, the Nyquist-Shannon sampling theorem suggests that the low sampling rate would lead to serious aliasing. The figure below shows two signals with different frequency components, which are the aliases for each other in the discrete domain, represented as black dots.
 
 \large \input{assets/alias-illus.tex}
+
+\Head{Methodology} \\
+\Large
+Instead of directly scaling on the raw waveform, which leads to the pitch shifting, we encode the raw waveform as a real-valued Neuralgram and scale it. A Neuralgram is applicable on TSM only when the following exists.
 \end{textblock}
 
 \begin{textblock}{7.0}(8,0)
-\Head{Methodology} \\
-\Large \lipsum[3-3]
+\Large
+\begin{itemize}[topsep=-2em]
+  \item{An encoder-decoder pair that is capable of fairly reconstructing the raw waveform.}
+  \item{A compression ratio that is high enough to put an entire sinusoid of the lowest frequency present into one sample in the Neuralgram}
+\end{itemize}
+\vspace{1.5em}
+Figure (b) illustrates the result of directly stretching the audio waveform and (d) illustrates the result of stretching the Neuralgram which captures the entire sinusoid.
 \large \input{assets/tsm-illus.tex}
+
+\Large
+The encoder-decoder pair mentioned above is a convolution autoencoder trained by GAN architecture, where a discriminator model tries to distinguish the generated audio from the real one. The optimizing loss is defined as below.
+\input{assets/d-loss.tex}
+And the autoencoder tries to fool the discriminator by generating realistic audio. The loss for it is defined as below.
+\input{assets/a-loss.tex}
+\input{assets/fm-loss.tex}
 
 \medskip
 
 \Head{Experiment} \\
-\Large \lipsum[4-4]
 
 \medskip
 \Head{Conclusion} \\
-\Large \lipsum[5-5]
 \end{textblock}
 
 
