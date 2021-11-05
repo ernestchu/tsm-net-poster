@@ -8,8 +8,8 @@
   legend pos=outer north east,
   xlabel=\(x\),
   ylabel={\(f(x)\)},
-  width=16cm,
-  height=4cm,
+  width=24cm,
+  height=6cm,
   scale only axis,
   legend style={fill=none}
 ]
@@ -31,7 +31,7 @@
 \fill 
   [name intersections={of=p1 and p2, name=i, total=\t}] 
   [black, opacity=1] 
-  \foreach \s in {1,...,\t}{(i-\s) circle (4pt)};
+  \foreach \s in {1,...,\t}{(i-\s) circle (6pt)};
 
 \end{axis}
 \end{tikzpicture}

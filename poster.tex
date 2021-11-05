@@ -4,8 +4,22 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \pgfplotsset{
-  xticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
-  yticklabel={$\mathsf{\pgfmathprintnumber{\tick}}$},
+  xticklabel={%
+    $\mathsf{%
+    \pgfmathtruncatemacro{\IntegerTick}{\tick}%
+    \pgfmathprintnumberto[verbatim]{\tick}\tickAdjusted%
+    \pgfmathparse{\IntegerTick == \tickAdjusted ? 1: 0}%
+    \ifnum\pgfmathresult>0\relax\IntegerTick\else\fi%
+    }$%
+  },  
+  yticklabel={%
+    $\mathsf{%
+    \pgfmathtruncatemacro{\IntegerTick}{\tick}%
+    \pgfmathprintnumberto[verbatim]{\tick}\tickAdjusted%
+    \pgfmathparse{\IntegerTick == \tickAdjusted ? 1: 0}%
+    \ifnum\pgfmathresult>0\relax\IntegerTick\else\fi%
+    }$%
+  },  
 }
 \usetikzlibrary{intersections}
 \usepackage{lipsum}  
@@ -53,19 +67,20 @@ We proposed a novel TSM approach. While traditional methods use framing techniqu
 \medskip
 \Head{Related Works} \\
 \Large
- Modeling audio is not a trivial task for neural networks. Models that directly generate raw audio waveform are known as vocoder.
+ Modeling audio is not a trivial task for neural networks. Models that directly generate raw audio waveform are known as vocoder which can be conditioned on some high-level abstract features such as linguistic features or spectrograms. In applications like text-to-speech (TTS) pipeline, the network often predicts the speech spectrogram of given texts, then uses a vocoder to get the raw audio.
 
-\input{assets/alias-illus.tex}
-
-\medskip
-\Head{Methodology} \\
-\Large \lipsum[3-3]
+\large \input{assets/alias-illus.tex}
 \end{textblock}
 
 \begin{textblock}{7.0}(8,0)
+\Head{Methodology} \\
+\Large \lipsum[3-3]
+\large \input{assets/tsm-illus.tex}
+
+\medskip
+
 \Head{Experiment} \\
 \Large \lipsum[4-4]
-\large \input{assets/tsm-illus.tex}
 
 \medskip
 \Head{Conclusion} \\
